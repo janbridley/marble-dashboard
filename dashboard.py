@@ -18,8 +18,7 @@ class PlotDashboard(Dashboard):
 if __name__ == '__main__':
     modules = []
     modules.append(StatepointList())
-    modules.append(ImageViewer(img_globs='pe.png', name='Potential energy'))
-    modules.append(ImageViewer(img_globs='pressure.png', name='Pressure'))
+    modules.append(ImageViewer(img_globs=['*.png'], name='Plots'))
     #notes_mod = Notes(name='Structure', key='structure')
     #notes_mod = Notes(name='Keep running?', key='keep_running')
     #modules.append(notes_mod)
