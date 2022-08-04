@@ -18,10 +18,8 @@ class PlotDashboard(Dashboard):
 if __name__ == '__main__':
     modules = []
     modules.append(StatepointList())
-    modules.append(ImageViewer(img_glob='test-fresnel-render.png', name='Color by hexatic order'))
-    modules.append(ImageViewer(img_glob='color-by-bonds.png', name='Color by number of bonds'))
-    modules.append(ImageViewer(img_glob='pe.png', name='Potential energy'))
-    modules.append(ImageViewer(img_glob='pressure.png', name='Pressure'))
+    modules.append(ImageViewer(img_globs='pe.png', name='Potential energy'))
+    modules.append(ImageViewer(img_globs='pressure.png', name='Pressure'))
     #notes_mod = Notes(name='Structure', key='structure')
     #notes_mod = Notes(name='Keep running?', key='keep_running')
     #modules.append(notes_mod)
