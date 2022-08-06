@@ -19,9 +19,7 @@ if __name__ == '__main__':
     modules = []
     modules.append(StatepointList())
     modules.append(ImageViewer(img_globs=['*.png'], name='Plots'))
-    #notes_mod = Notes(name='Structure', key='structure')
-    #notes_mod = Notes(name='Keep running?', key='keep_running')
-    #modules.append(notes_mod)
+    modules.append(ImageViewer(img_globs=['gallery/*.png'], name='Aggregate plots', context='ProjectContext'))
     config = {'PER_PAGE': 50}
     pr = signac.get_project('/gpfs/alpine/mat110/proj-shared/patchy-hexagon-equations-of-state')
     PlotDashboard(config=config, modules=modules, project=pr).main()
