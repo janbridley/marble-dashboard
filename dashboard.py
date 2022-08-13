@@ -27,7 +27,16 @@ if __name__ == '__main__':
     modules = []
     modules.append(StatepointList())
     modules.append(ImageViewer(img_globs=['*.png'], name='Plots'))
-    modules.append(ImageViewer(img_globs=['gallery/*.png'], name='Aggregate plots', context='ProjectContext'))
+    gallery_img_globs = [
+        (['gallery/pv-isotherm-kT-*.png'], 'Single-temperature PV isotherms', True),
+        (['gallery/all-eos.png'], 'Full equation of state isotherms', True),
+        (['gallery/local-density-distribution-kT-*-phi-*.png'], 'Local density distributions, by state point', False),
+        (['gallery/local-density-distributions-kT-*.png'], 'Local density distributions, by temperature', True),
+        (['gallery/local-density-distributions-phi-*.png'], 'Local density distributions, by density', False),
+        (['gallery/*psi*.png', 'gallery/*hexatic*.png'], 'Hexatic order plots', False),
+    ]
+    for globs, name, enabled in gallery_img_globs:
+        modules.append(ImageViewer(img_globs=globs, name=name, enabled=enabled, context='ProjectContext'))
     modules.append(TextDisplay(name='GSD restart error?', message=gsd_restart_error_msg))
     config = {'PER_PAGE': 50}
     pr = signac.get_project('/gpfs/alpine/mat110/proj-shared/patchy-hexagon-equations-of-state')
