@@ -6,7 +6,7 @@ import signac
 
 class PlotDashboard(Dashboard):
     def job_sorter(self, job):
-        return [job.sp.phi, job.sp.kT]
+        return [job.sp.phi, job.sp.kT, job.sp.replica]
 
     def job_title(self, job):
         pressure = 'p.f. = {}'.format(job.sp.phi)
