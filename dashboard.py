@@ -27,6 +27,7 @@ if __name__ == '__main__':
     modules = []
     modules.append(StatepointList())
     modules.append(ImageViewer(img_globs=['*.png'], name='Plots'))
+    modules.append(VideoViewer(name='Animations', poster='hexatic-field.png'))
     gallery_img_globs = [
         (['gallery/pv-isotherm-kT-*.png'], 'Single-temperature PV isotherms', True),
         (['gallery/all-eos.png'], 'Full equation of state isotherms', True),
@@ -37,7 +38,7 @@ if __name__ == '__main__':
     ]
     for globs, name, enabled in gallery_img_globs:
         modules.append(ImageViewer(img_globs=globs, name=name, enabled=enabled, context='ProjectContext'))
-    modules.append(TextDisplay(name='GSD restart error?', message=gsd_restart_error_msg))
+    modules.append(TextDisplay(name='GSD restart error?', message=gsd_restart_error_msg, enabled=False))
     config = {'PER_PAGE': 50}
     pr = signac.get_project('/gpfs/alpine/mat110/proj-shared/patchy-hexagon-equations-of-state')
     PlotDashboard(config=config, modules=modules, project=pr).main()
