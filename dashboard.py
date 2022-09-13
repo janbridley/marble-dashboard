@@ -26,8 +26,26 @@ def gsd_restart_error_msg(job):
 if __name__ == '__main__':
     modules = []
     modules.append(StatepointList())
-    modules.append(ImageViewer(img_globs=['*.png'], name='Plots'))
+    
+    # job-level images/plots
+    job_img_globs = [
+        (['*.png'], 'All images', False),
+        (['*-block-error.png'], 'Block error plots', False),
+        (['hexatic-field.png'], 'Hexatic order field', False),
+        (['*-field.png'], 'All field plots', True),
+        (['local-density.png'], 'Local density distribution', True),
+        (['*-full-series.png'], 'Timeseries plots', True),
+        (['pressure-full-series.png'], 'Pressure timeseries', False),
+        (['energy-full-series.png'], 'Energy timeseries', False),
+        (['pe.png', 'pressure.png'], 'Block averaged energy and pressure', False),
+    ]
+    for globs, name, enabled in job_img_globs:
+        modules.append(ImageViewer(img_globs=globs, name=name, enabled=enabled, context='JobContext'))
+    
+    # videos
     modules.append(VideoViewer(name='Animations', poster='hexatic-field.png'))
+    
+    # project-level images/plots
     gallery_img_globs = [
         (['gallery/pv-isotherm-kT-*.png'], 'Single-temperature PV isotherms', True),
         (['gallery/all-eos.png'], 'Full equation of state isotherms', True),
@@ -38,7 +56,8 @@ if __name__ == '__main__':
     ]
     for globs, name, enabled in gallery_img_globs:
         modules.append(ImageViewer(img_globs=globs, name=name, enabled=enabled, context='ProjectContext'))
-    modules.append(TextDisplay(name='GSD restart error?', message=gsd_restart_error_msg, enabled=False))
+        
+    #modules.append(TextDisplay(name='GSD restart error?', message=gsd_restart_error_msg, enabled=False))
     config = {'PER_PAGE': 50}
     pr = signac.get_project('/gpfs/alpine/mat110/proj-shared/patchy-hexagon-equations-of-state')
     PlotDashboard(config=config, modules=modules, project=pr).main()
