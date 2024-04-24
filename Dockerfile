@@ -8,4 +8,4 @@ ARG MAMBA_DOCKERFILE_ACTIVATE=1
 RUN micromamba install -c conda-forge signac-dashboard -y
 
 COPY dashboard.py /
-ENTRYPOINT /opt/conda/bin/python dashboard.py run --port=8080
+ENTRYPOINT /opt/conda/bin/python /dashboard.py run --port=8080
