@@ -59,5 +59,5 @@ if __name__ == '__main__':
         
     #modules.append(TextDisplay(name='GSD restart error?', message=gsd_restart_error_msg, enabled=False))
     config = {'PER_PAGE': 50}
-    pr = signac.get_project('/gpfs/alpine/mat110/proj-shared/patchy-hexagon-equations-of-state')
+    pr = signac.get_project('/lustre/orion/mat110/proj-shared/opp-system-assembly-project2')
     PlotDashboard(config=config, modules=modules, project=pr).main()
