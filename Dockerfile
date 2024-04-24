@@ -1,5 +1,7 @@
-FROM glotzerlab/software
-USER root
-RUN python3 -m pip install -U git+https://github.com/glotzerlab/signac-dashboard.git@b9c5a2fac0ffd5567eed1345481581b2c6d73d42
+FROM mambaorg/micromamba:1.5.8
+COPY --chown=$MAMBA_USER:$MAMBA_USER env.yaml /tmp/env.yaml
+RUN micromamba install -y -n base -f /tmp/env.yaml && \
+    micromamba clean --all --yes
+
 COPY dashboard.py /
 ENTRYPOINT python3 dashboard.py run --port=8080
