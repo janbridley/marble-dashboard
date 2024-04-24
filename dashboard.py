@@ -27,14 +27,12 @@ if __name__ == '__main__':
     modules = []
     modules.append(StatepointList())
     
-    # job-level images/plots
+
     job_img_globs = [
         (['*.png'], 'All images', False),
-        (['*-block-error.png'], 'Block error plots', False),
-        (['hexatic-field.png'], 'Hexatic order field', False),
-        (['*-field.png'], 'All field plots', True),
-        (['local-density.png'], 'Local density distribution', True),
-        (['*-full-series.png'], 'Timeseries plots', True),
+        (['*-detection.png'], 'All detection plots', False),
+        (['*-freeze-detection.png'], 'Freeze plots', True),
+        (['*-melt-detection.png'], 'Melt plots', True),
         (['pressure-full-series.png'], 'Pressure timeseries', False),
         (['energy-full-series.png'], 'Energy timeseries', False),
         (['pe.png', 'pressure.png'], 'Block averaged energy and pressure', False),
@@ -43,16 +41,16 @@ if __name__ == '__main__':
         modules.append(ImageViewer(img_globs=globs, name=name, enabled=enabled, context='JobContext'))
     
     # videos
-    modules.append(VideoViewer(name='Animations', poster='hexatic-field.png'))
+    # modules.append(VideoViewer(name='Animations', poster='hexatic-field.png'))
     
     # project-level images/plots
     gallery_img_globs = [
-        (['gallery/pv-isotherm-kT-*.png'], 'Single-temperature PV isotherms', True),
-        (['gallery/all-eos.png'], 'Full equation of state isotherms', True),
-        (['gallery/local-density-distribution-kT-*-phi-*.png'], 'Local density distributions, by state point', False),
-        (['gallery/local-density-distributions-kT-*.png'], 'Local density distributions, by temperature', True),
-        (['gallery/local-density-distributions-phi-*.png'], 'Local density distributions, by density', False),
-        (['gallery/*psi*.png', 'gallery/*hexatic*.png'], 'Hexatic order plots', False),
+        #(['gallery/pv-isotherm-kT-*.png'], 'Single-temperature PV isotherms', True),
+        #(['gallery/all-eos.png'], 'Full equation of state isotherms', True),
+        #(['gallery/local-density-distribution-kT-*-phi-*.png'], 'Local density distributions, by state point', False),
+        #(['gallery/local-density-distributions-kT-*.png'], 'Local density distributions, by temperature', True),
+        #(['gallery/local-density-distributions-phi-*.png'], 'Local density distributions, by density', False),
+        #(['gallery/*psi*.png', 'gallery/*hexatic*.png'], 'Hexatic order plots', False),
     ]
     for globs, name, enabled in gallery_img_globs:
         modules.append(ImageViewer(img_globs=globs, name=name, enabled=enabled, context='ProjectContext'))
