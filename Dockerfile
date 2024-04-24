@@ -5,7 +5,7 @@ RUN micromamba clean --all --yes
 
 ARG MAMBA_DOCKERFILE_ACTIVATE=1
 
-RUN micromamba install -y signac-dashboard
+RUN micromamba install -c conda-forge signac-dashboard -y
 
 COPY dashboard.py /
 ENTRYPOINT python3 dashboard.py run --port=8080
